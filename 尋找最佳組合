@@ -1,0 +1,61 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int Thg,tot=1,temp,temp2,Pa=0,Pb=0,T1=0,T2=0;
+	int two[8]={0,0,0,0,0,0,0,0};
+	printf("輸入數量(最多255):\n"); 
+	scanf("%d",&Thg);
+	int thg[Thg];
+	for(int i=0;i<8;i++)
+	{
+		thg[i]=0;
+	}
+	for(int i=0;i<Thg;i++)
+	{
+		printf("\n輸入第%d項物品的價格:",i+1);
+		scanf("%d",&thg[i]);
+	}
+	for(int i=0;i<Thg;i++)
+	{
+		tot=tot*2;
+	}
+	for(int i=0;i<tot;i++)
+	{
+		T1=0,T2=0;
+		int x=i;
+		for(int Z=0;Z<8;Z++)
+		{
+			two[Z]=x%2;
+			x=x/2;
+		}
+		for(int k=0;k<8;k++)
+		{
+			if(two[k]==0)
+			{
+				T1=T1+thg[k]; 
+			}
+			else
+			{
+				T2=T2+thg[k];
+			}
+			two[k]=0;
+		}
+		T1=(100-(T1%100))%100;
+		T2=(100-(T2%100))%100;
+		if((T1+T2)>(Pa+Pb))
+		{
+			Pa=T1;
+			Pb=T2;
+		}
+	}
+	printf("\n共有%d種組合",tot);
+	printf("\nPerson A 能拿到%2d元",Pa);
+	printf("\nPerson B 能拿到%2d元",Pb);
+	
+	
+	
+	return 0;	
+}
