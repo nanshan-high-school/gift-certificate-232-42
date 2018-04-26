@@ -1,61 +1,213 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <windows.h>
+int Ld();
+int Fnd();
+int Tof();
+int Err();
+int Tof2();
 int main()
 {
-	int Thg,tot=1,temp,temp2,Pa=0,Pb=0,T1=0,T2=0;
-	int two[8]={0,0,0,0,0,0,0,0};
-	printf("輸入數量(最多255):\n"); 
-	scanf("%d",&Thg);
-	int thg[Thg];
-	for(int i=0;i<8;i++)
+	while(1)
 	{
-		thg[i]=0;
-	}
-	for(int i=0;i<Thg;i++)
-	{
-		printf("\n輸入第%d項物品的價格:",i+1);
-		scanf("%d",&thg[i]);
-	}
-	for(int i=0;i<Thg;i++)
-	{
-		tot=tot*2;
-	}
-	for(int i=0;i<tot;i++)
-	{
-		T1=0,T2=0;
-		int x=i;
-		for(int Z=0;Z<8;Z++)
+		system("cls");
+		Ld();
+		int Thg,tot=1,temp,temp2,temp3=0,Pa=0,Pb=0,T1=0,T2=0,Tp1,Tp2;
+		int two[8]={0,0,0,0,0,0,0,0};
+		int TPA[8]={0,0,0,0,0,0,0,0},TPB[8]={0,0,0,0,0,0,0,0};
+		int PA[8]={0,0,0,0,0,0,0,0},PB[8]={0,0,0,0,0,0,0,0};
+		printf("輸入數量(1~255): "); 
+		scanf("%d",&Thg);
+		if(Thg>255||Thg<1)
 		{
-			two[Z]=x%2;
-			x=x/2;
+			Err();
+			system("PAUSE");
+			system("color 07");
+			Tof2();
+			break;
 		}
-		for(int k=0;k<8;k++)
+		int thg[Thg];
+		for(int i=0;i<8;i++)
 		{
-			if(two[k]==0)
+			thg[i]=0;
+		}
+		for(int i=0;i<Thg;i++)
+		{
+			printf("\n輸入第%d項物品的價格:",i+1);
+			scanf("%d",&thg[i]);
+		}
+		for(int i=0;i<Thg;i++)
+		{
+			tot=tot*2;
+		}
+		for(int i=0;i<tot;i++)
+		{
+			T1=0,T2=0,Tp1=0,Tp2=0;
+			int x=i;
+			for(int Z=0;Z<8;Z++)
 			{
-				T1=T1+thg[k]; 
+				two[Z]=x%2;
+				x=x/2;
 			}
-			else
+			for(int k=0;k<8;k++)
 			{
-				T2=T2+thg[k];
+				if(two[k]==0)
+				{
+					T1=T1+thg[k]; 
+					TPA[Tp1]=thg[k];
+					Tp1++;
+				}
+				else
+				{
+					T2=T2+thg[k];
+					TPB[Tp2]=thg[k];
+					Tp2++;
+				}
+				two[k]=0;
 			}
-			two[k]=0;
+			T1=(100-(T1%100))%100;
+			T2=(100-(T2%100))%100;
+			if((T1+T2)>(Pa+Pb))
+			{
+				Pa=T1;
+				Pb=T2;
+				for(int j=0;j<8;j++)
+				{
+					PA[j]=TPA[j];
+					PB[j]=TPB[j];
+				}
+			}
 		}
-		T1=(100-(T1%100))%100;
-		T2=(100-(T2%100))%100;
-		if((T1+T2)>(Pa+Pb))
+		printf("\n共有%d種組合",tot);
+		printf("\nPerson A 能拿到%2d元\n",Pa);
+		printf("Person A的組合是:"); 
+		while(PA[temp3]!=0)
 		{
-			Pa=T1;
-			Pb=T2;
+			printf(" %d",PA[temp3]);
+			temp3++;
+		}
+		printf("\nPerson B 能拿到%2d元\n",Pb);
+		printf("Person B的組合是:");
+		temp3=0; 
+		while(PB[temp3]!=0)
+		{
+			printf(" %d",PB[temp3]);
+			temp3++;
+		}
+		printf("\n是否要繼續(Y/N):");
+		char A[1];
+		scanf("%s",A);
+		if(A[0]=='Y'|A[0]=='y')
+		{
+			
+		}
+		else
+		{
+			Tof();
+			break;
 		}
 	}
-	printf("\n共有%d種組合",tot);
-	printf("\nPerson A 能拿到%2d元",Pa);
-	printf("\nPerson B 能拿到%2d元",Pb);
-	
-	
-	
 	return 0;	
+}
+
+Ld()
+{
+	for(int i=0;i<5;i++)
+	{
+		printf("Loading.");
+		Sleep(200);
+		printf(".");
+		Sleep(200);
+		printf(".");
+		Sleep(200);
+		system("cls");
+	}
+	return 0;
+}
+
+Fnd()
+{
+	int j,k;
+	for(int i=0;i<10;i++)
+	{
+		j=i;
+		for(int i=0;i<3;i++)
+		{
+			k=i+1;
+			printf("calculating");
+			for(int i=0;i<k;i++)
+			{
+				printf(".");
+			}
+			printf("\n");
+			for(int i=0;i<j;i++)
+			{
+				printf("▊");
+			}
+			Sleep(200);
+			system("cls");
+		}
+	}
+	return 0;
+}
+
+Tof()
+{
+	int j,k;
+	for(int i=0;i<10;i++)
+	{
+		j=i;
+		for(int i=0;i<3;i++)
+		{
+			k=i+1;
+			printf("stopping");
+			for(int i=0;i<k;i++)
+			{
+				printf(".");
+			}
+			printf("\n");
+			for(int i=0;i<j;i++)
+			{
+				printf("▊");
+			}
+			Sleep(200);
+			system("cls");
+		}
+	}
+	return 0;
+}
+
+Tof2()
+{
+	int j,k;
+	for(int i=0;i<10;i++)
+	{
+		j=i;
+		for(int i=0;i<3;i++)
+		{
+			k=i+1;
+			printf("系統君生氣關機中");
+			for(int i=0;i<k;i++)
+			{
+				printf(".");
+			}
+			printf("\n");
+			for(int i=0;i<j;i++)
+			{
+				printf("▊");
+			}
+			Sleep(200);
+			system("cls");
+		}
+	}
+	return 0;
+}
+
+Err()
+{
+	system("cls");
+	printf("Fuck you\n");
+	system("color 04");
+	printf("一定要這樣玩系統嗎?!\n\n");
 }
