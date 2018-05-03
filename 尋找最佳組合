@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
@@ -13,7 +13,7 @@ int main()
 	{
 		system("cls");
 		Ld();
-		int Thg,tot=1,temp,temp2,temp3=0,Pa=0,Pb=0,T1=0,T2=0,Tp1,Tp2;
+		int Thg,tot=1,temp,temp2,temp3=0,Pa=0,Pb=0,T1=0,T2=0,Tp1,Tp2,totleX=0;
 		int two[8]={0,0,0,0,0,0,0,0};
 		int TPA[8]={0,0,0,0,0,0,0,0},TPB[8]={0,0,0,0,0,0,0,0};
 		int PA[8]={0,0,0,0,0,0,0,0},PB[8]={0,0,0,0,0,0,0,0};
@@ -95,6 +95,8 @@ int main()
 			printf(" %d",PB[temp3]);
 			temp3++;
 		}
+		totleX=Pa+Pb;
+		printf("\n總共可以拿到%d元",totleX);
 		printf("\n是否要繼續(Y/N):");
 		char A[1];
 		scanf("%s",A);
@@ -107,6 +109,7 @@ int main()
 			Tof();
 			break;
 		}
+		
 	}
 	return 0;	
 }
